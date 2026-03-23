@@ -1,54 +1,33 @@
-# Custom Instructions - testing-bito
+# Custom Instructions - temporal-test-incremental
 
 ## Repository Role
 
-`testing-bito` is the primary backend service repository in this test workspace. It should be treated as a small Spring-style Java service centered around the `User` domain.
+`temporal-test-incremental` is a companion repository used for incremental indexing validation and schema continuity checks.
+
+It is not the main API owner. Instead, it acts as a lightweight domain-model repository centered around the `User` entity.
 
 ## Core Architecture
 
-- `Rename.java` is the main REST controller entry point.
-- `UserService.java` is the service layer.
-- `UserRepository.java` is the persistence layer.
-- `User.java` is the core entity model for user data.
-
-This repository follows a layered structure:
-
-- controller -> service -> repository -> entity
-
-## Important Internal Relationships
-
-- `UserService` depends on `UserRepository`.
-- `UserRepository` manages `User` entities.
-- `UserService` owns CRUD-style user operations:
-  - `getAllUsers`
-  - `getUserById`
-  - `createUser`
-  - `updateUser`
-  - `deleteUser`
-
-## API Ownership
-
-The following endpoints belong to this repository:
-
-- `GET /api/hello`
-- `GET /api/divide`
-- `GET /api/crash`
-
-`Rename.java` should be interpreted as the main API/controller file even though the repository intentionally contains buggy sample code.
+- `User.java` is the primary and only important artifact in this repository.
+- The repository should be understood as an early-stage Java/JPA model repository.
 
 ## Domain Notes
 
-- This repository owns the `User` domain in the workspace.
-- The `User` model contains:
-  - `id`
-  - `name`
-  - `email`
+- The repository represents the same conceptual `User` domain as `testing-bito`.
+- The `User` entity here should be treated as schema-compatible with the `User` entity in `testing-bito`.
+- Changes to the `User` model in this repository are cross-repo relevant because they affect shared user-domain understanding across the workspace.
 
 ## Cross-Repo Relationship
 
-`testing-bito` shares the same conceptual `User` domain with `temporal-test-incremental`.
+- `testing-bito` is the primary backend/API repository.
+- `temporal-test-incremental` is the supporting repository for incremental-index validation.
+- The strongest relationship between the two repositories is the shared `User` entity/domain model.
 
-- `testing-bito` is the active service/API repository.
-- `temporal-test-incremental` is a companion repository used for schema continuity and incremental indexing validation.
+## Knowledge Extraction Guidance
 
-The shared `User` entity between the two repositories should be treated as a meaningful clustering and cross-repo relationship signal.
+When extracting knowledge from this repository, emphasize:
+
+- companion repository role
+- shared `User` entity with `testing-bito`
+- early-stage model-only repository
+- schema continuity / incremental indexing relevance
