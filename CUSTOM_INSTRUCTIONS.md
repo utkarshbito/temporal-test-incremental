@@ -31,3 +31,6 @@ When extracting knowledge from this repository, emphasize:
 - shared `User` entity with `testing-bito`
 - early-stage model-only repository
 - schema continuity / incremental indexing relevance
+
+
+## Testing-bito and this repo are part of utkarsh project, together they will work as a single unit
