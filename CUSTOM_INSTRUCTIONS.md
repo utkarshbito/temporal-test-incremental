@@ -33,4 +33,4 @@ When extracting knowledge from this repository, emphasize:
 - schema continuity / incremental indexing relevance
 
 
-## Testing-bito and this repo are part of utkarsh project, together they will work as a single unit
+## Testing-bito and temporal-test-incremental repo are part of utkarsh project, together they will work as a single unit, there are a couple of other repos that will get added in this.
