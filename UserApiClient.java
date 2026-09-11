@@ -58,4 +58,15 @@ public class UserApiClient {
         HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
         return response.statusCode();
     }
+
+    /** PUT /api/users/{id} — served by UserController.updateUser */
+    public String updateUser(Long id, String userJson) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(USER_SERVICE_BASE_URL + "/" + id))
+                .header("Content-Type", "application/json")
+                .PUT(HttpRequest.BodyPublishers.ofString(userJson))
+                .build();
+        HttpResponse<String> response = http.send(request, HttpResponse.BodyHandlers.ofString());
+        return response.body();
+    }
 }
